@@ -13,6 +13,13 @@ class icinga::plugins {
         group  => 'icinga',
         mode   => '0755',
     }
+    
+    file { '/usr/lib/nagios/plugins/cachet_notify':
+        source  => 'puppet:///modules/icinga/cachet_notify',
+        owner  => 'root',
+        group  => 'root',
+        mode   => '0755',
+    }
 
     file { '/var/lib/nagios':
         ensure => directory,
