@@ -163,4 +163,13 @@ class mediawiki {
         user        => 'www-data',
         require     => Git::Clone['MediaWiki core'],
     }
+    exec { 'refreshed_composer':
+        command     => 'curl -sS https://getcomposer.org/installer | php && php composer.phar install',
+        creates     => '/srv/mediawiki/w/extensions/Refreshed/composer.phar',
+        cwd         => '/srv/mediawiki/w/extensions/Refreshed',
+        path        => '/usr/bin',
+        environment => 'HOME=/srv/mediawiki/w/skins/Refreshed',
+        user        => 'www-data',
+        require     => Git::Clone['MediaWiki core'],
+    }
 }
